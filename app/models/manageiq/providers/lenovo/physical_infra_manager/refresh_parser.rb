@@ -1,5 +1,4 @@
 module ManageIQ::Providers::Lenovo
-  #TODO Change back to PhysicalInfra Inheritance
   class PhysicalInfraManager::RefreshParser < EmsRefresh::Parsers::Infra
     include ManageIQ::Providers::Lenovo::RefreshHelperMethods
 
@@ -119,8 +118,8 @@ module ManageIQ::Providers::Lenovo
         :macAddresses   => node.macAddress.split(",").flatten,
         :ipv4Addresses  => node.ipv4Addresses.split.flatten,
         :ipv6Addresses  => node.ipv6Addresses.split.flatten,
-        :healthState    => HEALTH_STATE[node.cmmHealthState.downcase],
-        :powerState     => POWER_STATE_MAP[node.powerStatus],
+        :health_state    => HEALTH_STATE[node.cmmHealthState.downcase],
+        :power_state     => POWER_STATE_MAP[node.powerStatus],
         :vendor         => "lenovo"
       }
       return node.uuid, new_result
